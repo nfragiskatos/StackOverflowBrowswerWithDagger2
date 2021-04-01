@@ -1,4 +1,4 @@
-package com.techyourchance.dagger2course.screens.common.toolbar
+package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.toolbar
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.widget.Toolbar
-import com.techyourchance.dagger2course.R
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.R
 
 class MyToolbar : Toolbar {
 

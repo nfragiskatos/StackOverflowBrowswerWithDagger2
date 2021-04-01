@@ -1,4 +1,4 @@
-package com.techyourchance.dagger2course
+package com.nfragiskatos.stackoverflowbrowserwithdagger2
 
 import android.app.Application
 

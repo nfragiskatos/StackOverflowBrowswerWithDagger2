@@ -1,4 +1,4 @@
-package com.techyourchance.dagger2course.screens.questiondetails
+package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails
 
 import android.content.Context
 import android.content.Intent
@@ -8,11 +8,11 @@ import android.text.Html
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.techyourchance.dagger2course.Constants
-import com.techyourchance.dagger2course.R
-import com.techyourchance.dagger2course.networking.StackoverflowApi
-import com.techyourchance.dagger2course.screens.common.dialogs.ServerErrorDialogFragment
-import com.techyourchance.dagger2course.screens.common.toolbar.MyToolbar
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.Constants
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.R
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.ServerErrorDialogFragment
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.toolbar.MyToolbar
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
