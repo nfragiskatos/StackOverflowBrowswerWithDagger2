@@ -1,35 +1,33 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.IdRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.R
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewsmvc.BaseViewMvc
 import java.util.*
-import kotlin.collections.HashSet
 
 class QuestionsListViewMvc(private val layoutInflater: LayoutInflater,
-                           private val parent: ViewGroup?) {
+                           private val parent: ViewGroup?
+) : BaseViewMvc<QuestionsListViewMvc.Listener>(
+        layoutInflater,
+        parent,
+        R.layout.layout_questions_list) {
 
     private val swipeRefresh: SwipeRefreshLayout
     private val recyclerView: RecyclerView
     private val questionsAdapter: QuestionsAdapter
-    val rootView: View = layoutInflater.inflate(R.layout.layout_questions_list, parent, false)
-
-    private val context: Context get() = rootView.context
 
     interface Listener {
         fun onRefreshClicked()
         fun onQuestionClicked(clickedQuestion: Question)
     }
 
-    private val listeners = HashSet<Listener>()
 
     init {
 
@@ -60,18 +58,6 @@ class QuestionsListViewMvc(private val layoutInflater: LayoutInflater,
         if (swipeRefresh.isRefreshing) {
             swipeRefresh.isRefreshing = false
         }
-    }
-
-    private fun <T : View?> findViewById(@IdRes id: Int): T {
-        return rootView.findViewById<T>(id)
-    }
-
-    fun registerListener(listener: Listener) {
-        listeners.add(listener)
-    }
-
-    fun unregisterListener(listener: Listener) {
-        listeners.remove(listener)
     }
 
     fun bindQuestions(questions: List<Question>) {
