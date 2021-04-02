@@ -13,7 +13,6 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.R
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
 import java.util.*
 import kotlin.collections.HashSet
-import kotlin.collections.List
 
 class QuestionsListViewMvc(private val layoutInflater: LayoutInflater,
                            private val parent: ViewGroup?) {
@@ -63,7 +62,7 @@ class QuestionsListViewMvc(private val layoutInflater: LayoutInflater,
         }
     }
 
-    fun <T : View?> findViewById(@IdRes id: Int): T {
+    private fun <T : View?> findViewById(@IdRes id: Int): T {
         return rootView.findViewById<T>(id)
     }
 
