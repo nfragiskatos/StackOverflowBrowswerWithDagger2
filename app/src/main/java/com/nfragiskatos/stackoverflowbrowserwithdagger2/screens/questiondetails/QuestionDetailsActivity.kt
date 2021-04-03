@@ -32,7 +32,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
         setContentView(viewMvc.rootView)
 
-        fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase((application as MyApplication).stackOverflowApi)
+        fetchQuestionDetailsUseCase = (application as MyApplication).fetchQuestionsDetailsUseCase
 
         // retrieve question ID passed from outside
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
