@@ -8,8 +8,6 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestions
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.ServerErrorDialogFragment
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails.QuestionDetailsActivity
 import kotlinx.coroutines.*
 
 class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener {
@@ -30,7 +28,7 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
         super.onCreate(savedInstanceState)
         viewMvc = QuestionsListViewMvc(LayoutInflater.from(this), null)
         setContentView(viewMvc.rootView)
-        fetchQuestionsUseCase = FetchQuestionsUseCase((application as MyApplication).retrofit)
+        fetchQuestionsUseCase = FetchQuestionsUseCase((application as MyApplication).stackOverflowApi)
         dialogsNavigator = DialogsNavigator(supportFragmentManager)
         screensNavigator = ScreensNavigator(this)
     }

@@ -1,21 +1,16 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.questions
 
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.Constants
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-class FetchQuestionsUseCase(private val retrofit: Retrofit) {
+class FetchQuestionsUseCase(private val stackoverflowApi: StackoverflowApi) {
 
     sealed class Result {
         class Success(val questions: List<Question>) : Result()
         object Failure: Result()
     }
-
-    private val stackoverflowApi: StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
 
     suspend fun fetchLatestQuestions() : Result {
         return withContext(Dispatchers.IO) {

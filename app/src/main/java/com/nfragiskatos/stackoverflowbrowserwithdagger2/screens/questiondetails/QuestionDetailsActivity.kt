@@ -1,20 +1,15 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails
 
+import FetchQuestionDetailsUseCase
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.Constants
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.ServerErrorDialogFragment
 import kotlinx.coroutines.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.Listener {
 
@@ -37,7 +32,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
         setContentView(viewMvc.rootView)
 
-        fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase((application as MyApplication).retrofit)
+        fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase((application as MyApplication).stackOverflowApi)
 
         // retrieve question ID passed from outside
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
