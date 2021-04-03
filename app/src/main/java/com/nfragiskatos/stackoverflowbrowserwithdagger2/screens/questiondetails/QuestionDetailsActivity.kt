@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.Constants
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.ServerErrorDialogFragment
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
@@ -23,6 +24,8 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
     private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
 
+    private lateinit var dialogsNavigator: DialogsNavigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,6 +38,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
         // retrieve question ID passed from outside
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
 
+        dialogsNavigator = DialogsNavigator(supportFragmentManager)
     }
 
     override fun onStart() {
@@ -67,9 +71,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
     }
 
     private fun onFetchFailed() {
-        supportFragmentManager.beginTransaction()
-                .add(ServerErrorDialogFragment.newInstance(), null)
-                .commitAllowingStateLoss()
+        dialogsNavigator.showServerErrorDialog()
     }
 
 
