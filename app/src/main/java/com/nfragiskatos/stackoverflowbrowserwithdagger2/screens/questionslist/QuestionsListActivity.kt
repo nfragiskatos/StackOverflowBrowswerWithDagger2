@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.ServerErrorDialogFragment
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails.QuestionDetailsActivity
@@ -22,12 +23,15 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
 
     private lateinit var dialogsNavigator: DialogsNavigator
 
+    private lateinit var screensNavigator: ScreensNavigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewMvc = QuestionsListViewMvc(LayoutInflater.from(this), null)
         setContentView(viewMvc.rootView)
         fetchQuestionsUseCase = FetchQuestionsUseCase()
         dialogsNavigator = DialogsNavigator(supportFragmentManager)
+        screensNavigator = ScreensNavigator(this)
     }
 
     override fun onStart() {
@@ -71,6 +75,6 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
     }
 
     override fun onQuestionClicked(clickedQuestion: Question) {
-        QuestionDetailsActivity.start(this, clickedQuestion.id)
+        screensNavigator.toQuestionDetails(clickedQuestion.id)
     }
 }

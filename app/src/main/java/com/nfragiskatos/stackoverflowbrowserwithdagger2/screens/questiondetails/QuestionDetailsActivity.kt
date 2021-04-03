@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.Constants
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.ServerErrorDialogFragment
 import kotlinx.coroutines.*
@@ -26,6 +27,8 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
     private lateinit var dialogsNavigator: DialogsNavigator
 
+    private lateinit var screensNavigator: ScreensNavigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,6 +42,8 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
 
         dialogsNavigator = DialogsNavigator(supportFragmentManager)
+
+        screensNavigator = ScreensNavigator(this)
     }
 
     override fun onStart() {
@@ -85,6 +90,6 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
     }
 
     override fun onBackClicked() {
-        onBackPressed()
+        screensNavigator.navigateBack()
     }
 }
