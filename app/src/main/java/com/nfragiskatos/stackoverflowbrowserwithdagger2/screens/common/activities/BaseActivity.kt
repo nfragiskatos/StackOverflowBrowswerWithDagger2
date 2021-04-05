@@ -2,9 +2,15 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activiti
 
 import androidx.appcompat.app.AppCompatActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.composition.AppCompositionRoot
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.composition.ActivityCompositionRoot
 
-open class BaseActivity: AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
-    val compositionRoot get() = (application as MyApplication).appCompositionRoot
+    private val appCompositionRoot get() = (application as MyApplication).appCompositionRoot
+
+    val compositionRoot by lazy {
+        ActivityCompositionRoot(this, appCompositionRoot)
+    }
+
+
 }
