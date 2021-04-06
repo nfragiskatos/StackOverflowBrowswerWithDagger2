@@ -4,6 +4,7 @@ import FetchQuestionDetailsUseCase
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Service
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
@@ -14,10 +15,10 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-     lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
-     lateinit var dialogsNavigator: DialogsNavigator
-     lateinit var screensNavigator: ScreensNavigator
-     lateinit var viewMvcFactory: ViewMvcFactory
+    @field:Service private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+    @field:Service private lateinit var dialogsNavigator: DialogsNavigator
+    @field:Service private lateinit var screensNavigator: ScreensNavigator
+    @field:Service private lateinit var viewMvcFactory: ViewMvcFactory
 
     private lateinit var viewMvc: QuestionDetailsViewMvc
 
