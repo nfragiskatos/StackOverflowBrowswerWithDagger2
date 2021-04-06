@@ -14,17 +14,11 @@ class ActivityCompositionRoot(private val activity: AppCompatActivity, private v
         ScreensNavigator(activity)
     }
 
-    private val layoutInflater get() = LayoutInflater.from(activity)
+    val layoutInflater get() = LayoutInflater.from(activity)
+    val fragmentManager get() = activity.supportFragmentManager
+    val stackOverflowApi get() = appCompositionRoot.stackOverflowApi
 
-    val viewMvcFactory get() = ViewMvcFactory(layoutInflater)
 
-    private val fragmentManager get() = activity.supportFragmentManager
 
-    val dialogsNavigator get() = DialogsNavigator(fragmentManager)
 
-    private val stackOverflowApi get() = appCompositionRoot.stackOverflowApi
-
-    val fetchQuestionsUseCase get() = FetchQuestionsUseCase(stackOverflowApi)
-
-    val fetchQuestionDetailsUseCase get() = FetchQuestionDetailsUseCase(stackOverflowApi)
 }
