@@ -2,8 +2,8 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activiti
 
 import androidx.appcompat.app.AppCompatActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.composition.ActivityCompositionRoot
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.composition.PresentationCompositionRoot
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.ActivityCompositionRoot
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.PresentationCompositionRoot
 
 open class BaseActivity : AppCompatActivity() {
 

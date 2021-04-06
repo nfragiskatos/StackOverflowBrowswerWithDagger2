@@ -1,4 +1,4 @@
-package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.composition
+package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection
 
 import FetchQuestionDetailsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionsUseCase
