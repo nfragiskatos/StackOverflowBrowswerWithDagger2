@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.fragments.BaseFragment
 import kotlinx.coroutines.*
@@ -18,15 +15,13 @@ class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    private var isDataLoaded = false
+    private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
+    private lateinit var dialogsNavigator: DialogsNavigator
+    private lateinit var screensNavigator: ScreensNavigator
 
     private lateinit var viewMvc: QuestionsListViewMvc
 
-    private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
-
-    private lateinit var dialogsNavigator: DialogsNavigator
-
-    private lateinit var screensNavigator: ScreensNavigator
+    private var isDataLoaded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +63,6 @@ class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
             } finally {
                 viewMvc.hideProgressIndication()
             }
-
         }
     }
 
