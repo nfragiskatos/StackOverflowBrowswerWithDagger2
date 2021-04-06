@@ -3,6 +3,7 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activiti
 import androidx.appcompat.app.AppCompatActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.ActivityCompositionRoot
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Injector
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.PresentationCompositionRoot
 
 open class BaseActivity : AppCompatActivity() {
@@ -13,9 +14,10 @@ open class BaseActivity : AppCompatActivity() {
         ActivityCompositionRoot(this, appCompositionRoot)
     }
 
-    val compositionRoot by lazy {
+    private val compositionRoot by lazy {
         PresentationCompositionRoot(activityCompositionRoot)
     }
 
+    protected val injector get() = Injector(compositionRoot)
 
 }
