@@ -1,6 +1,6 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails
 
-import FetchQuestionDetailsUseCase
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle

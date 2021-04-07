@@ -1,5 +1,6 @@
+package com.nfragiskatos.stackoverflowbrowserwithdagger2.questions
+
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.QuestionWithBody
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

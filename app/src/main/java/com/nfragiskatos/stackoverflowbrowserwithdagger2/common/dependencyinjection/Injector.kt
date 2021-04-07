@@ -1,13 +1,13 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection
 
-import FetchQuestionDetailsUseCase
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewsmvc.ViewMvcFactory
 import java.lang.reflect.Field
 
-class Injector(private val compositionRoot: PresentationCompositionRoot) {
+class Injector(private val component: PresentationComponent) {
     fun inject(client: Any) {
         for (field in getAllFields(client)) {
             if (isAnnotatedForInjection(field)) {
@@ -38,26 +38,26 @@ class Injector(private val compositionRoot: PresentationCompositionRoot) {
         field.isAccessible = isAccessibleInitially
     }
 
-    private fun getServiceForClass(type: Class<*>) : Any {
+    private fun getServiceForClass(type: Class<*>) : Any? {
         when (type) {
             DialogsNavigator::class.java -> {
-                return compositionRoot.dialogsNavigator
+                return component.dialogsNavigator()
             }
 
             ScreensNavigator::class.java -> {
-                return compositionRoot.screensNavigator
+                return component.screensNavigator()
             }
 
             FetchQuestionsUseCase::class.java -> {
-                return compositionRoot.fetchQuestionsUseCase
+                return component.fetchQuestionsUseCase()
             }
 
             FetchQuestionDetailsUseCase::class.java -> {
-                return compositionRoot.fetchQuestionDetailsUseCase
+                return component.fetchQuestionDetailsUseCase()
             }
 
             ViewMvcFactory::class.java -> {
-                return compositionRoot.viewMvcFactory
+                return component.viewMvcFactory()
             }
 
             else -> {
