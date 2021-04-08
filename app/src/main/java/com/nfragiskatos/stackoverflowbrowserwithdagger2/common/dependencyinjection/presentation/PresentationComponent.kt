@@ -6,18 +6,14 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestions
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewsmvc.ViewMvcFactory
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails.QuestionDetailsActivity
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist.QuestionsListFragment
 import dagger.Component
 
 @Component(modules = [PresentationModule::class])
 interface PresentationComponent {
 
-    fun screensNavigator(): ScreensNavigator
+    fun inject(fragment: QuestionsListFragment)
 
-    fun viewMvcFactory(): ViewMvcFactory
-
-    fun dialogsNavigator(): DialogsNavigator
-
-    fun fetchQuestionsUseCase(): FetchQuestionsUseCase
-
-    fun fetchQuestionDetailsUseCase(): FetchQuestionDetailsUseCase
+    fun inject(activity: QuestionDetailsActivity)
 }

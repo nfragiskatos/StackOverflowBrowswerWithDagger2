@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Service
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
@@ -12,15 +11,23 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.D
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.fragments.BaseFragment
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewsmvc.ViewMvcFactory
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    @field:Service private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
-    @field:Service private lateinit var dialogsNavigator: DialogsNavigator
-    @field:Service private lateinit var screensNavigator: ScreensNavigator
-    @field:Service private lateinit var viewMvcFactory: ViewMvcFactory
+    @Inject
+    lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
+
+    @Inject
+    lateinit var dialogsNavigator: DialogsNavigator
+
+    @Inject
+    lateinit var screensNavigator: ScreensNavigator
+
+    @Inject
+    lateinit var viewMvcFactory: ViewMvcFactory
 
     private lateinit var viewMvc: QuestionsListViewMvc
 

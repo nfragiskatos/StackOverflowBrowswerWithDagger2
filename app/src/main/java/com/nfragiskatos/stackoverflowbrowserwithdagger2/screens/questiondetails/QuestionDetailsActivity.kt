@@ -1,24 +1,31 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails
 
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Service
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewsmvc.ViewMvcFactory
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    @field:Service private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
-    @field:Service private lateinit var dialogsNavigator: DialogsNavigator
-    @field:Service private lateinit var screensNavigator: ScreensNavigator
-    @field:Service private lateinit var viewMvcFactory: ViewMvcFactory
+    @Inject
+    lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+
+    @Inject
+    lateinit var dialogsNavigator: DialogsNavigator
+
+    @Inject
+    lateinit var screensNavigator: ScreensNavigator
+
+    @Inject
+    lateinit var viewMvcFactory: ViewMvcFactory
 
     private lateinit var viewMvc: QuestionDetailsViewMvc
 
