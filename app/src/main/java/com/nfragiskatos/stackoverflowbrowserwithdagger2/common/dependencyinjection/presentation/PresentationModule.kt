@@ -1,8 +1,9 @@
-package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection
+package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.presentation
 
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
 import android.view.LayoutInflater
 import androidx.fragment.app.FragmentManager
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityComponent
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
@@ -11,22 +12,22 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class PresentationModule(private val activityCompositionRoot: ActivityCompositionRoot) {
+class PresentationModule(private val activityComponent: ActivityComponent) {
 
     @Provides
-    fun layoutInflater() = activityCompositionRoot.layoutInflater
+    fun layoutInflater() = activityComponent.layoutInflater()
 
     @Provides
-    fun fragmentManager() = activityCompositionRoot.fragmentManager
+    fun fragmentManager() = activityComponent.fragmentManager()
 
     @Provides
-    fun stackOverflowApi() = activityCompositionRoot.stackOverflowApi
+    fun stackOverflowApi() = activityComponent.stackOverflowApi()
 
     @Provides
-    fun activity() = activityCompositionRoot.activity
+    fun activity() = activityComponent.activity()
 
     @Provides
-    fun screensNavigator() = activityCompositionRoot.screensNavigator
+    fun screensNavigator() = activityComponent.screensNavigator()
 
     @Provides
     fun viewMvcFactory(layoutInflater: LayoutInflater) = ViewMvcFactory(layoutInflater)

@@ -3,14 +3,14 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.fragment
 import androidx.fragment.app.Fragment
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.DaggerPresentationComponent
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Injector
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.PresentationModule
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.presentation.PresentationModule
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 
 open class BaseFragment : Fragment() {
 
     private val presentationComponent by lazy {
         DaggerPresentationComponent.builder()
-                .presentationModule(PresentationModule((requireActivity() as BaseActivity).activityCompositionRoot))
+                .presentationModule(PresentationModule((requireActivity() as BaseActivity).activityComponent))
                 .build()
     }
 

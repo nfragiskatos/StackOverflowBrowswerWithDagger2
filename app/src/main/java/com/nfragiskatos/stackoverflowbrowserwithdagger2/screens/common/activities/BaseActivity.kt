@@ -2,22 +2,24 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activiti
 
 import androidx.appcompat.app.AppCompatActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.ActivityCompositionRoot
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.DaggerPresentationComponent
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Injector
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.PresentationModule
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.*
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityComponent
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityModule
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.presentation.PresentationModule
 
 open class BaseActivity : AppCompatActivity() {
 
-    private val appCompositionRoot get() = (application as MyApplication).appCompositionRoot
+    private val appComponent get() = (application as MyApplication).appComponent
 
-    val activityCompositionRoot by lazy {
-        ActivityCompositionRoot(this, appCompositionRoot)
+    val activityComponent: ActivityComponent by lazy {
+        DaggerActivityComponent.builder()
+                .activityModule(ActivityModule(this, appComponent))
+                .build()
     }
 
     private val presentationComponent by lazy {
         DaggerPresentationComponent.builder()
-                .presentationModule(PresentationModule(activityCompositionRoot))
+                .presentationModule(PresentationModule(activityComponent))
                 .build()
     }
 

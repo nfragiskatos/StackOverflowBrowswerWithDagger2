@@ -1,14 +1,15 @@
-package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection
+package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.app
 
 import android.app.Application
-import androidx.annotation.UiThread
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.Constants
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
+import dagger.Module
+import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@UiThread
-class AppCompositionRoot(val application: Application) {
+@Module
+class AppModule(val application: Application) {
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
@@ -17,5 +18,13 @@ class AppCompositionRoot(val application: Application) {
                 .build()
     }
 
-    val stackOverflowApi: StackoverflowApi by lazy { retrofit.create(StackoverflowApi::class.java) }
+    private val stackOverflowApi : StackoverflowApi by lazy {
+        retrofit.create(StackoverflowApi::class.java)
+    }
+
+    @Provides
+    fun stackOverflowApi() = stackOverflowApi
+
+    @Provides
+    fun application() = application
 }
