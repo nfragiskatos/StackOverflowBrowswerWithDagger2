@@ -7,6 +7,7 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.Stackoverflow
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import dagger.Component
 
+@ActivityScope
 @Component(modules = [ActivityModule::class])
 interface ActivityComponent {
 

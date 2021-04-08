@@ -3,7 +3,7 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2
 import android.app.Application
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.app.AppComponent
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.app.AppModule
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.DaggerAppComponent
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.app.DaggerAppComponent
 
 class MyApplication : Application() {
 

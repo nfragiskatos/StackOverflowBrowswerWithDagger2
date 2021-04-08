@@ -4,10 +4,11 @@ import android.app.Application
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
 import dagger.Component
 
+@AppScope
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun stackOverflowApi() : StackoverflowApi
+    fun stackOverflowApi(): StackoverflowApi
 
-    fun application() : Application
+    fun application(): Application
 }

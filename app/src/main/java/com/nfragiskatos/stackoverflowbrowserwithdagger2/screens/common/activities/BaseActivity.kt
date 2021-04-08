@@ -5,6 +5,8 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.*
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityComponent
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityModule
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.DaggerActivityComponent
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.presentation.DaggerPresentationComponent
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.presentation.PresentationModule
 
 open class BaseActivity : AppCompatActivity() {
