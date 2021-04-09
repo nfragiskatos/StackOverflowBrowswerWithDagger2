@@ -6,7 +6,7 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist.Qu
 import dagger.Subcomponent
 
 @PresentationScope
-@Subcomponent(modules = [PresentationModule::class])
+@Subcomponent(modules = [PresentationModule::class, UseCasesModule::class])
 interface PresentationComponent {
 
     fun inject(fragment: QuestionsListFragment)
