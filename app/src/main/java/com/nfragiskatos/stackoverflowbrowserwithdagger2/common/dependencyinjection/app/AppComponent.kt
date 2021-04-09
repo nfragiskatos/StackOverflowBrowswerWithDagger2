@@ -9,8 +9,4 @@ import dagger.Component
 interface AppComponent {
 
     fun newActivityComponent(activityModule: ActivityModule): ActivityComponent
-
-//    fun stackOverflowApi(): StackoverflowApi
-//
-//    fun application(): Application
 }
