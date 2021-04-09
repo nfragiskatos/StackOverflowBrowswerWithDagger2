@@ -2,14 +2,16 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinject
 
 
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails.QuestionDetailsActivity
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist.QuestionsListActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist.QuestionsListFragment
 import dagger.Subcomponent
 
 @PresentationScope
-@Subcomponent(modules = [PresentationModule::class, UseCasesModule::class])
+@Subcomponent()
 interface PresentationComponent {
 
     fun inject(fragment: QuestionsListFragment)
 
     fun inject(activity: QuestionDetailsActivity)
+    fun inject(questionsListActivity: QuestionsListActivity)
 }
