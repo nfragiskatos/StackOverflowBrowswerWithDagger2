@@ -1,14 +1,16 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.app
 
-import android.app.Application
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityComponent
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityModule
 import dagger.Component
 
 @AppScope
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun stackOverflowApi(): StackoverflowApi
+    fun newActivityComponent(activityModule: ActivityModule): ActivityComponent
 
-    fun application(): Application
+//    fun stackOverflowApi(): StackoverflowApi
+//
+//    fun application(): Application
 }
