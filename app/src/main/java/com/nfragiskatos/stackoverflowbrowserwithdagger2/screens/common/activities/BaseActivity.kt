@@ -6,7 +6,6 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjecti
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityComponent
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.ActivityModule
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity.DaggerActivityComponent
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.presentation.DaggerPresentationComponent
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.presentation.PresentationComponent
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.presentation.PresentationModule
 
@@ -22,10 +21,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private val presentationComponent by lazy {
-        DaggerPresentationComponent.builder()
-                .activityComponent(activityComponent)
-                .presentationModule(PresentationModule())
-                .build()
+        activityComponent.newPresentationComponent(PresentationModule())
     }
 
     protected val injector: PresentationComponent get() = presentationComponent

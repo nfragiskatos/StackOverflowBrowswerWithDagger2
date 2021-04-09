@@ -5,9 +5,10 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjecti
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails.QuestionDetailsActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist.QuestionsListFragment
 import dagger.Component
+import dagger.Subcomponent
 
 @PresentationScope
-@Component(dependencies = [ActivityComponent::class], modules = [PresentationModule::class])
+@Subcomponent(modules = [PresentationModule::class])
 interface PresentationComponent {
 
     fun inject(fragment: QuestionsListFragment)
