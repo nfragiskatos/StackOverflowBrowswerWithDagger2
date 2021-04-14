@@ -5,6 +5,7 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.Constants
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Retrofit1
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Retrofit2
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.UrlProvider
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -16,27 +17,32 @@ class AppModule(val application: Application) {
 
     @Provides
     @AppScope
-    @Named("retrofit1")
-    fun retrofit1(): Retrofit {
+    @Retrofit1
+    fun retrofit1(urlProvider: UrlProvider): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(urlProvider.getBaseUrl1())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
 
     @Provides
     @AppScope
-    @Named("retrofit2")
-    fun retrofit2(): Retrofit {
+    @Retrofit2
+    fun retrofit2(urlProvider: UrlProvider): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(urlProvider.getBaseUrl2())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
 
+
+    @AppScope
+    @Provides
+    fun baseUrlProvider() = UrlProvider()
+
     @Provides
     @AppScope
-    fun stackOverflowApi(@Named("retrofit1") retrofit: Retrofit): StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
+    fun stackOverflowApi(@Retrofit1 retrofit: Retrofit): StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
 
     @Provides
     fun application() = application
