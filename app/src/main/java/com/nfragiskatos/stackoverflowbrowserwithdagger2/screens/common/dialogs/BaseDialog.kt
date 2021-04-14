@@ -5,7 +5,7 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.service.ServiceModule
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 
-open class BaseDialog: DialogFragment() {
+open class BaseDialog : DialogFragment() {
 
     private val presentationComponent by lazy {
         (requireActivity() as BaseActivity).activityComponent.newPresentationComponent()

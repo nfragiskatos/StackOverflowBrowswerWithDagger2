@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.R
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.toolbar.MyToolbar
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewsmvc.BaseViewMvc
 import java.util.*
 
@@ -22,14 +23,22 @@ class QuestionsListViewMvc(private val layoutInflater: LayoutInflater,
     private val swipeRefresh: SwipeRefreshLayout
     private val recyclerView: RecyclerView
     private val questionsAdapter: QuestionsAdapter
+    private val myToolbar: MyToolbar
 
     interface Listener {
         fun onRefreshClicked()
         fun onQuestionClicked(clickedQuestion: Question)
+        fun onViewModelClicked()
     }
 
 
     init {
+        myToolbar = findViewById(R.id.toolbar)
+        myToolbar.setViewModelListener {
+            for (listener in listeners) {
+                listener.onViewModelClicked()
+            }
+        }
 
         // init pull-down-to-refresh
         swipeRefresh = findViewById(R.id.swipeRefresh)

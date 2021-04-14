@@ -38,7 +38,7 @@ class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         injector.inject(this)
-        Log.e("QuestionsListFragment","$screensNavigator")
+        Log.e("QuestionsListFragment", "$screensNavigator")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -88,4 +88,9 @@ class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
     override fun onQuestionClicked(clickedQuestion: Question) {
         screensNavigator.toQuestionDetails(clickedQuestion.id)
     }
+
+    override fun onViewModelClicked() {
+        screensNavigator.toViewModel()
+    }
+
 }

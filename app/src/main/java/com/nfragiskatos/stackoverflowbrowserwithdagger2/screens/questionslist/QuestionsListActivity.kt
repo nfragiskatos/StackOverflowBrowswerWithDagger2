@@ -10,11 +10,12 @@ import javax.inject.Inject
 class QuestionsListActivity : BaseActivity() {
 
 
-    @Inject lateinit var screensNavigator: ScreensNavigatorImpl
+    @Inject
+    lateinit var screensNavigator: ScreensNavigatorImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injector.inject(this)
-        Log.e("QuestionsListActivity","$screensNavigator")
+        Log.e("QuestionsListActivity", "$screensNavigator")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_frame)
 

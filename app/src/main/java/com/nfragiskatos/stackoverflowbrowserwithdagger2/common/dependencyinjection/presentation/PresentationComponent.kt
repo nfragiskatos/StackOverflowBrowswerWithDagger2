@@ -4,6 +4,7 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinject
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails.QuestionDetailsActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist.QuestionsListActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist.QuestionsListFragment
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.viewmodel.ViewModelActivity
 import dagger.Subcomponent
 
 @PresentationScope
@@ -14,4 +15,5 @@ interface PresentationComponent {
 
     fun inject(activity: QuestionDetailsActivity)
     fun inject(questionsListActivity: QuestionsListActivity)
+    fun inject(viewModelActivity: ViewModelActivity)
 }
