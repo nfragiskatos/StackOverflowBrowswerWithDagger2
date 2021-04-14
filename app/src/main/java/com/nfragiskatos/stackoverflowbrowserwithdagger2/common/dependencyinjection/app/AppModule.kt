@@ -9,13 +9,14 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 
 @Module
 class AppModule(val application: Application) {
 
     @Provides
     @AppScope
-    @Retrofit1
+    @Named("retrofit1")
     fun retrofit1(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -25,7 +26,7 @@ class AppModule(val application: Application) {
 
     @Provides
     @AppScope
-    @Retrofit2
+    @Named("retrofit2")
     fun retrofit2(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -35,7 +36,7 @@ class AppModule(val application: Application) {
 
     @Provides
     @AppScope
-    fun stackOverflowApi(@Retrofit1 retrofit: Retrofit): StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
+    fun stackOverflowApi(@Named("retrofit1") retrofit: Retrofit): StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
 
     @Provides
     fun application() = application
