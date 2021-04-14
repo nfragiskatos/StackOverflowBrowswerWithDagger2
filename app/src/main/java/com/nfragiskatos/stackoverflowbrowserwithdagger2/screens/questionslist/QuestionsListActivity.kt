@@ -2,23 +2,15 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questionslist
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import androidx.appcompat.app.AppCompatActivity
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.MyApplication
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.R
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionsUseCase
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigatorImpl
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
-import kotlinx.android.synthetic.main.layout_frame.view.*
-import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class QuestionsListActivity : BaseActivity() {
 
 
-    @Inject lateinit var screensNavigator: ScreensNavigator
+    @Inject lateinit var screensNavigator: ScreensNavigatorImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injector.inject(this)

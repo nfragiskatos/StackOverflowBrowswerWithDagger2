@@ -1,15 +1,8 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common
 
-import androidx.appcompat.app.AppCompatActivity
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails.QuestionDetailsActivity
+interface ScreensNavigator {
 
-class ScreensNavigator constructor(private val activity: AppCompatActivity) {
+    fun navigateBack()
 
-    fun navigateBack() {
-        activity.onBackPressed()
-    }
-
-    fun toQuestionDetails(questionId: String) {
-        QuestionDetailsActivity.start(activity, questionId)
-    }
+    fun toQuestionDetails(questionId: String)
 }
