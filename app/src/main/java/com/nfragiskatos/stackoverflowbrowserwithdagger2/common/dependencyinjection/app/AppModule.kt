@@ -2,6 +2,8 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinject
 
 import android.app.Application
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.Constants
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Retrofit1
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.Retrofit2
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.StackoverflowApi
 import dagger.Module
 import dagger.Provides
@@ -13,7 +15,8 @@ class AppModule(val application: Application) {
 
     @Provides
     @AppScope
-    fun retrofit(): Retrofit {
+    @Retrofit1
+    fun retrofit1(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -22,7 +25,17 @@ class AppModule(val application: Application) {
 
     @Provides
     @AppScope
-    fun stackOverflowApi(retrofit: Retrofit): StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
+    @Retrofit2
+    fun retrofit2(): Retrofit {
+        return Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+    }
+
+    @Provides
+    @AppScope
+    fun stackOverflowApi(@Retrofit1 retrofit: Retrofit): StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
 
     @Provides
     fun application() = application
