@@ -8,12 +8,16 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.Stackoverflow
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.networking.UrlProvider
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.internal.managers.ApplicationComponentManager
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 
 @Module
-class AppModule(val application: Application) {
+@InstallIn(SingletonComponent::class)
+class AppModule() {
 
     @Provides
     @AppScope
@@ -43,7 +47,4 @@ class AppModule(val application: Application) {
     @Provides
     @AppScope
     fun stackOverflowApi(@Retrofit1 retrofit: Retrofit): StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
-
-    @Provides
-    fun application() = application
 }
