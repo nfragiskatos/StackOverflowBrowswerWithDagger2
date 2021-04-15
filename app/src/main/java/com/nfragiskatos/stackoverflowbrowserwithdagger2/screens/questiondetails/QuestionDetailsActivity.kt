@@ -3,10 +3,8 @@ package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.questiondetails
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigatorImpl
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewsmvc.ViewMvcFactory
@@ -36,7 +34,6 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
     private lateinit var questionId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("QuestionDetailsActivity", "$screensNavigator")
         super.onCreate(savedInstanceState)
         viewMvc = viewMvcFactory.newQuestionDetailsViewMvc(null)
         setContentView(viewMvc.rootView)

@@ -10,7 +10,6 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.R
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.toolbar.MyToolbar
-import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewmodels.ViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,9 +17,6 @@ import javax.inject.Inject
 class ViewModelActivity : BaseActivity() {
     @Inject
     lateinit var screensNavigator: ScreensNavigator
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var myViewModel: MyViewModel
     private lateinit var myViewModel2: MyViewModel2
@@ -37,8 +33,8 @@ class ViewModelActivity : BaseActivity() {
             screensNavigator.navigateBack()
         }
 
-        myViewModel = ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)
-        myViewModel2 = ViewModelProvider(this, viewModelFactory).get(MyViewModel2::class.java)
+        myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        myViewModel2 = ViewModelProvider(this).get(MyViewModel2::class.java)
 
         myViewModel.questions.observe(this, Observer { questions ->
             Toast.makeText(this, "fetched ${questions.size} questions", Toast.LENGTH_SHORT).show()
