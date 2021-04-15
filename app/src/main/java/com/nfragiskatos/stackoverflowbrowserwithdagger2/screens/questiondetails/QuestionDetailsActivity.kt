@@ -10,9 +10,11 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNa
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.dialogs.DialogsNavigator
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewsmvc.ViewMvcFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
@@ -34,7 +36,6 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
     private lateinit var questionId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injector.inject(this)
         Log.e("QuestionDetailsActivity", "$screensNavigator")
         super.onCreate(savedInstanceState)
         viewMvc = viewMvcFactory.newQuestionDetailsViewMvc(null)

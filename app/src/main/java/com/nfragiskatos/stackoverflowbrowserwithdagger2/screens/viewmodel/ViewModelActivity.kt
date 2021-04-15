@@ -11,8 +11,10 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNa
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.activities.BaseActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.toolbar.MyToolbar
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewmodels.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ViewModelActivity : BaseActivity() {
     @Inject
     lateinit var screensNavigator: ScreensNavigator
@@ -26,7 +28,6 @@ class ViewModelActivity : BaseActivity() {
     private lateinit var toolbar: MyToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injector.inject(this)
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.layout_view_model)
