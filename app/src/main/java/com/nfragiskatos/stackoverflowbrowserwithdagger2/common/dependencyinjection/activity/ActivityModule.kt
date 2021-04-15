@@ -1,5 +1,6 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.common.dependencyinjection.activity
 
+import android.app.Activity
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.ScreensNavigator
@@ -21,7 +22,10 @@ abstract class ActivityModule {
 
     companion object {
         @Provides
-        fun layoutInflater(activity: AppCompatActivity): LayoutInflater = LayoutInflater.from(activity)
+        fun layoutInflater(activity: Activity): LayoutInflater = LayoutInflater.from(activity)
+
+        @Provides
+        fun appCompatActivity(activity: Activity) = activity as AppCompatActivity
 
         @Provides
         fun fragmentManager(activity: AppCompatActivity) = activity.supportFragmentManager
