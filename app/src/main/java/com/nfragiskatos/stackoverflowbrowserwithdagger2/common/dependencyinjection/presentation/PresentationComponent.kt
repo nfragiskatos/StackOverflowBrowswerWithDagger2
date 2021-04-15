@@ -8,11 +8,10 @@ import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.viewmodel.ViewMo
 import dagger.Subcomponent
 
 @PresentationScope
-@Subcomponent(modules = [ViewModelsModule::class])
+@Subcomponent(modules = [PresentationModule::class])
 interface PresentationComponent {
 
     fun inject(fragment: QuestionsListFragment)
-
     fun inject(activity: QuestionDetailsActivity)
     fun inject(questionsListActivity: QuestionsListActivity)
     fun inject(viewModelActivity: ViewModelActivity)
