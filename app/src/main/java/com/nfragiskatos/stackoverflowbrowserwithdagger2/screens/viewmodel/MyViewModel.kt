@@ -1,23 +1,28 @@
 package com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionDetailsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.FetchQuestionsUseCase
 import com.nfragiskatos.stackoverflowbrowserwithdagger2.questions.Question
+import com.nfragiskatos.stackoverflowbrowserwithdagger2.screens.common.viewmodels.SavedStateViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MyViewModel @Inject constructor(
         private val fetchQuestionsUseCase: FetchQuestionsUseCase,
-        private val fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase,
-        private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
+        private val fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+) : SavedStateViewModel() {
 
-    private val _questions: MutableLiveData<List<Question>> = savedStateHandle.getLiveData("questions")
-    val questions: LiveData<List<Question>> = _questions
+    private lateinit var _questions: MutableLiveData<List<Question>>
+    val questions: LiveData<List<Question>> get() = _questions
 
-    init {
+    override fun init(savedStateHandle: SavedStateHandle) {
+        _questions = savedStateHandle.getLiveData("questions")
+
         viewModelScope.launch {
             delay(5000)
             val result = fetchQuestionsUseCase.fetchLatestQuestions()
